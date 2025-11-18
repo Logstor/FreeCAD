@@ -4,7 +4,8 @@
 # (c) 2018 Werner Mayer LGPL
 #
 
-import sys, getopt
+import getopt
+import sys
 
 # import os # The code that needs this is commented out
 import shutil
