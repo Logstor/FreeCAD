@@ -220,7 +220,9 @@ Gui.HintManager = HintManager()
 
 
 def InitApplications():
-    import sys, os, traceback
+    import os
+    import sys
+    import traceback
     import io as cStringIO
 
     # Searching modules dirs +++++++++++++++++++++++++++++++++++++++++++++++++++

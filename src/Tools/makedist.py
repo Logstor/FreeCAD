@@ -6,7 +6,16 @@
 # Python script to make source tarballs.
 #
 
-import sys, os, getopt, tarfile, gzip, time, io, platform, shutil, subprocess
+import getopt
+import gzip
+import io
+import os
+import platform
+import shutil
+import subprocess
+import sys
+import tarfile
+import time
 
 
 def main():

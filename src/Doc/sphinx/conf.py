@@ -33,7 +33,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os, commands
+import os
+import subprocess
+import sys
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -47,16 +49,26 @@ if os.path.exists(os.path.abspath(os.path.join(os.environ["HOME"],"FreeCAD/lib")
 
 # otherwise try to locate FreeCAD lib somewhere else:
 
-elif commands.getstatusoutput("locate FreeCAD/lib")[0] == 0:
-    path = commands.getstatusoutput("locate FreeCAD/lib")[1].split()[0]
-    sys.path.append(path)
+else:
+    try:
+        result = subprocess.run(["locate", "FreeCAD/lib"], capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            path = result.stdout.split()[0]
+            sys.path.append(path)
+    except (FileNotFoundError, IndexError):
+        pass
 
 # locate TemplatePyMod
-if commands.getstatusoutput("locate TemplatePyMod")[0] == 0:
-    path = commands.getstatusoutput("locate TemplatePyMod")[1].split()[0]
-    sys.path.append(path)
+try:
+    result = subprocess.run(["locate", "TemplatePyMod"], capture_output=True, text=True, check=False)
+    if result.returncode == 0:
+        path = result.stdout.split()[0]
+        sys.path.append(path)
+except (FileNotFoundError, IndexError):
+    pass
 
-import FreeCAD, FreeCADGui
+import FreeCAD
+import FreeCADGui
 FreeCADGui.showMainWindow() # this is needed for complete import of GUI modules
 doc = FreeCAD.newDocument("doc")
 

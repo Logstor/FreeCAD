@@ -5,7 +5,9 @@
 #  A convenience script to generate a deployment archive name of the form
 #  FreeCAD_{Major Version Number}.{Minor Version Number}-{Git Revision Count}.{Git Short SHA}-{OS}-{Arch}
 #
-import sys, getopt, platform
+import getopt
+import platform
+import sys
 
 
 def deserializeVersionHeader(path):
